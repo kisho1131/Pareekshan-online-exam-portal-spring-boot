@@ -1,6 +1,10 @@
 package com.pareekshan.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -21,10 +25,25 @@ public class User {
     private String phone;
     @Column(name = "enabled")
     private boolean enabled = false;
+    @Column(name = "email")
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Column(name = "profile_image")
     private String profile;
 
-    public User(Long id, String userName, String password, String firstName, String lastName, String phone, boolean enabled, String profile) {
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @JsonIgnore
+    private Set<UserRole> userRole = new HashSet<>();
+
+    public User(Long id, String userName, String password, String firstName, String lastName, String phone, boolean enabled, String email, String profile) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -32,11 +51,20 @@ public class User {
         this.lastName = lastName;
         this.phone = phone;
         this.enabled = enabled;
+        this.email = email;
         this.profile = profile;
     }
 
     public User() {
 
+    }
+
+    public Set<UserRole> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Set<UserRole> userRole) {
+        this.userRole = userRole;
     }
 
     public String getProfile() {
