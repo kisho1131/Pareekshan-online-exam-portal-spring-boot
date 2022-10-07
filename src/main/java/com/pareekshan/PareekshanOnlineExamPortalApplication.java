@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @SpringBootApplication
-public class PareekshanOnlineExamPortalApplication implements CommandLineRunner {
+public class PareekshanOnlineExamPortalApplication {
 
     @Autowired
     private UserServiceImpl userServiceImpl;
@@ -23,7 +23,7 @@ public class PareekshanOnlineExamPortalApplication implements CommandLineRunner 
         SpringApplication.run(PareekshanOnlineExamPortalApplication.class, args);
     }
 
-
+    /*
     @Override
     public void run(String... args) throws Exception {
         System.out.println("Debug mode....");
@@ -50,4 +50,5 @@ public class PareekshanOnlineExamPortalApplication implements CommandLineRunner 
         System.out.println(user1.getUserName() + user1.getFirstName());
 
     }
+     */
 }

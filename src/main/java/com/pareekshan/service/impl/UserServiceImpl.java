@@ -35,4 +35,22 @@ public class UserServiceImpl implements UserService {
         }
         return newUser;
     }
+
+    // get user by username
+    @Override
+    public User getUser(String username) {
+        return this.userRepository.findByUserName(username);
+    }
+
+    @Override
+    public User deleteUser(String username) throws Exception {
+        User user = this.userRepository.findByUserName(username);
+        if(user == null){
+            System.out.println("User with " + username + " dosen't exist");
+            throw new Exception("User with " + username + " dosen't exist");
+        }else {
+            this.userRepository.delete(user);
+        }
+        return user;
+    }
 }
