@@ -13,7 +13,8 @@ import java.util.function.Function;
 
 @Service
 public class JwtUtils {
-    private String SECRET_KEY = "sumit";
+    /* for HS256 size of secret key must be  >= 256 bit */
+    private String SECRET_KEY = "12345678901121998123456789011111111111111111111111111111111";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

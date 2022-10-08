@@ -6,6 +6,7 @@ import com.pareekshan.entity.UserRole;
 import com.pareekshan.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -19,9 +20,13 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     /* Register the user to the Database */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public User createUser(@RequestBody User user) throws Exception {
+        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
         if(user.getProfile() == null){
             user.setProfile("default User Profile");
         }
