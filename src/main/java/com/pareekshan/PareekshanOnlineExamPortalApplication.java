@@ -34,9 +34,9 @@ public class PareekshanOnlineExamPortalApplication {
     @PostConstruct
     public void saveAdminUser() throws Exception {
         User user = new User();
-        user.setFirstName("sumit");
-        user.setLastName("kumar");
-        user.setPhone("903612122");
+        user.setFirstName("Sumit");
+        user.setLastName("Kumar");
+        user.setPhone("7882568408");
         user.setPassword(bCryptPasswordEncoder.encode("admin"));
         user.setEnabled(true);
         user.setUserName("admin");
